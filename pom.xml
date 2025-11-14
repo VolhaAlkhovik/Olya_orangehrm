@@ -30,7 +30,6 @@
                     <configLocation>configuration/checkstyle.xml</configLocation>
                     <outputFile>target/checkstyle-result.xml</outputFile>
                     <outputFileFormat>xml</outputFileFormat>
-                    <linkXref>true</linkXref>
                     <consoleOutput>true</consoleOutput>
                     <failsOnError>true</failsOnError>
                 </configuration>
