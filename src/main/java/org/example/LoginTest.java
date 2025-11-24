@@ -1,40 +1,43 @@
 package org.example;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 
 public class LoginTest {
 
-    @Test
-    public void testLogin() throws InterruptedException {
-      WebDriver driver = new ChromeDriver();
-      driver.manage().window().maximize();
-      driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-        Thread.sleep(1000);
-        // driver.findElement(By.name("username"));
-        driver.findElement(By.name("username")).sendKeys("Admin");
-        //  driver.findElement(By.name("password"));
-        driver.findElement(By.name("password")).sendKeys("admin123");
-        driver.findElement(By.cssSelector("button[type='submit']"));
-        driver.findElement(By.xpath("//button[contains(@class, 'orangehrm-login-button')]")).click();
-        Thread.sleep(5000);
+  @Test
+  public void testLogin() throws InterruptedException {
+    WebDriver driver = WebDriverManager.chromedriver().create();
+    driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+    driver.manage().window().maximize();
 
-        driver.findElement(By.xpath("//a[contains(@href, 'viewAdminModule')]")).click();
-        Thread.sleep(5000);
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("password")));
 
-        driver.findElement(By.xpath("//label[text()='Username']/parent::div/following-sibling::div/input")).sendKeys("Username");
-        Thread.sleep(10000);
-        driver.findElement(By.xpath("//div[contains(@class, 'oxd-select-text oxd-select-text--active')]")).click();
-        Thread.sleep(10000);
-        driver.findElement(By.xpath("//div/span[text() = 'Admin']")).click();
-        Thread.sleep(10000);
+    driver.findElement(By.name("username")).sendKeys("Admin");
+    driver.findElement(By.name("password")).sendKeys("admin123");
 
-       // driver.findElement(By.xpath("//button[text()=' Search ']")).click();
-      // driver.findElement(By.xpath("//button[text()=' Add ']")).click();
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
 
-      driver.quit();
-  }
+    driver.findElement(By.xpath("//button[contains(@class, 'orangehrm-login-button')]")).click();
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class = 'oxd-userdropdown-tab']")));
+
+    driver.findElement(By.xpath("//a[@href='/web/index.php/pim/viewPimModule']")).click();
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='oxd-table-filter']")));
+
+    driver.findElement(By.xpath("//a[text()='Add Employee']")).click();
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@type = 'submit']")));
+
+    driver.findElement(By.xpath("//input[contains(@class, 'active orangehrm-firstname')]")).sendKeys("FirstTestName");
+    driver.findElement(By.xpath("//input[contains(@class, 'active orangehrm-middlename')]")).sendKeys("MiddleTestName");
+    driver.findElement(By.xpath("//input[contains(@class, 'active orangehrm-lastname')]")).sendKeys("LastTestName");
+    //driver.findElement(By.xpath("//input[@fdprocessedid='eh7s2g']")).sendKeys();
+    driver.findElement(By.xpath("//button[@type = 'submit']")).click();}
 
 }
