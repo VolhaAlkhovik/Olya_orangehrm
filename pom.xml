@@ -14,6 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <selenium.version>4.38.0</selenium.version>
         <testng.version>7.11.0</testng.version>
+        <webdrivermanager.version>6.1.0</webdrivermanager.version>
     </properties>
     <dependencies>
         <dependency>
@@ -25,19 +26,20 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>${selenium.version}</version> <!-- Use the latest stable version -->
+            <version>${selenium.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.2</version>
+            <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>6.1.0</version>
+            <version>${webdrivermanager.version}</version>
         </dependency>
+
     </dependencies>
     <build>
         <plugins>
@@ -47,6 +49,7 @@
                 <version>3.6.0</version>
                 <executions>
                     <execution>
+                        <phase>verify</phase>
                         <goals>
                             <goal>check</goal>
                         </goals>
@@ -58,6 +61,7 @@
                     <outputFileFormat>xml</outputFileFormat>
                     <consoleOutput>true</consoleOutput>
                     <failsOnError>true</failsOnError>
+                    <failOnViolation>true</failOnViolation>
                 </configuration>
             </plugin>
             <plugin>
