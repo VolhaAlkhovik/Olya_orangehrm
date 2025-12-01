@@ -1,8 +1,11 @@
 name: Checkstyle
 
-on:
-  pull_request:   # запуск при открытии или обновлении PR
-
+ push:
+    branches:
+      - '**'   # запускается на пуш в любую ветку
+  pull_request:
+    branches:
+      - '**'   # запускается на PR в любую ветку
 jobs:
   checkstyle:
     runs-on: ubuntu-latest   
