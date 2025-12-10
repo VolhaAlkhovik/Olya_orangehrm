@@ -6,23 +6,27 @@ public class AddEmployeeTest extends BaseTest {
 
     @Test
     public void addEmployee() {
+        testLogin();
         driver.findElement(By.xpath("//span[text()='PIM']")).click();
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(
                         By.xpath("//div[@class='oxd-table-filter']")));
 
-        driver.findElement(By.xpath("//a[text()='Add Employee']")).click();
+        driver.findElement(By.xpath("//button[text()=' Add ']")).click();
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@type = 'submit']")));
 
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//div/input[@name='firstName']")));
+
         driver
-                .findElement(By.xpath("//input[contains(@class, 'active orangehrm-firstname')]"))
+                .findElement(By.xpath("//div/input[@name='firstName']"))
                 .sendKeys("FirstTestName");
         driver
-                .findElement(By.xpath("//input[contains(@class, 'active orangehrm-middlename')]"))
+                .findElement(By.xpath("//div/input[@name='middleName']"))
                 .sendKeys("MiddleTestName");
         driver
-                .findElement(By.xpath("//input[contains(@class, 'active orangehrm-lastname')]"))
+                .findElement(By.xpath("//div/input[@name='lastName']"))
                 .sendKeys("LastTestName");
         driver.findElement(By.xpath("//button[@type = 'submit']")).click();
         wait.until(
