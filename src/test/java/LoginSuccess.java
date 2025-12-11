@@ -6,7 +6,8 @@ public class LoginSuccess extends BaseTest {
     @Parameters({"username", "password"})
     @Test
     public void testSuccessLogin(String username, String password) {
-        Assert.assertEquals(username, "Admin", "Username is incorrect");
-        Assert.assertEquals(password, "admin123","Password is incorrect");
+        testLogin();
+        String URL_AfterLogin = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+        Assert.assertEquals(driver.getCurrentUrl(), URL_AfterLogin, "Авторизация не прошла");
     }
 }

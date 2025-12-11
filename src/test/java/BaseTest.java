@@ -12,7 +12,6 @@ public class BaseTest {
     public WebDriverWait wait;
     protected static final String LOGIN_URL = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
 
-
     @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
@@ -25,7 +24,6 @@ public class BaseTest {
         driver.get(LOGIN_URL);
         driver.manage().window().maximize();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("password")));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
