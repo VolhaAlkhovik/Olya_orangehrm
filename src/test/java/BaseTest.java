@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
+import pages.DriverManager;
 import pages.LoginPage;
 
 import javax.swing.*;
@@ -20,14 +21,14 @@ public class BaseTest {
     @BeforeMethod
 
     public void setUp() {
-        driver = new ChromeDriver();
+        driver = DriverManager.getDriver();
         driver.manage().window().maximize();
         driver.get(LOGIN_URL);
     }
 
     @AfterMethod
     public void tearDown(){
-        driver.quit();
+        DriverManager.quitDriver();
     }
 
 }

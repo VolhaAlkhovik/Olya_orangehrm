@@ -11,7 +11,6 @@ public class BasePage {
     protected WebDriverWait wait;
     private static final long DEFAULT_TIMEOUT_SEC = 10;
 
-
     public BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(DEFAULT_TIMEOUT_SEC));

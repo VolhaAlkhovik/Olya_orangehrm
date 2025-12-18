@@ -3,9 +3,9 @@ package entities;
 
 public class Employee {
 
-    private  String firstName;
-    private  String middleName;
-    private  String lastName;
+    private final String firstName;
+    private final String middleName;
+    private final String lastName;
 
     public Employee(String fName, String mName, String lName) {
         this.firstName = fName;
