@@ -3,14 +3,14 @@ package entities;
 
 public class Employee {
 
-    private String firstName;
-    private String middleName;
-    private String lastName;
+    private  String firstName;
+    private  String middleName;
+    private  String lastName;
 
-    public Employee(String firstName, String middleName, String lastName) {
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
+    public Employee(String fName, String mName, String lName) {
+        this.firstName = fName;
+        this.middleName = mName;
+        this.lastName = lName;
     }
 
     public String getFirstName() {

@@ -3,9 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 
 public class LoginPage extends BasePage {
 
@@ -19,7 +17,7 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public LoginPage login (String name, String pass) {
+    public LoginPage login(String name, String pass) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(submitButton));
         enterUsername(name)
                 .enterPassword(pass)
@@ -27,7 +25,7 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public Dashboard successLogin (String name, String pass){
+    public Dashboard successLogin(String name, String pass) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(submitButton));
         enterUsername(name)
                 .enterPassword(pass)
@@ -36,7 +34,7 @@ public class LoginPage extends BasePage {
         return new Dashboard(driver);
     }
 
-    public LoginPage failedLogin (String name, String pass) {
+    public LoginPage failedLogin(String name, String pass) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(submitButton));
         enterUsername(name)
                 .enterPassword(pass)
@@ -45,17 +43,17 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public LoginPage enterUsername(String name){
+    public LoginPage enterUsername(String name) {
         driver.findElement(username).sendKeys(name);
         return this;
     }
 
-    public LoginPage enterPassword(String pass){
+    public LoginPage enterPassword(String pass) {
         driver.findElement(password).sendKeys(pass);
         return this;
     }
 
-    public void submit(){
+    public void submit() {
         driver.findElement(submitButton).click();
     }
 

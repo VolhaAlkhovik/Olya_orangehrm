@@ -16,7 +16,7 @@ public class AddingEmployee extends BasePage {
         super(driver);
     }
 
-    public void addEmployee (Employee employee){
+    public void addEmployee(Employee employee) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(submit));
         driver.findElement(firstName).sendKeys(employee.getFirstName());
         driver.findElement(middleName).sendKeys(employee.getMiddleName());
@@ -24,19 +24,19 @@ public class AddingEmployee extends BasePage {
         driver.findElement(submit).click();
     }
 
-    public void enterFirstName(){
+    public void enterFirstName() {
         driver.findElement(firstName).sendKeys("FirstTestName");
     }
 
-    public void enterMiddleName(){
+    public void enterMiddleName() {
         driver.findElement(middleName).sendKeys("MiddleTestName");
     }
 
-    public void enterLastName(){
+    public void enterLastName() {
         driver.findElement(lastName).sendKeys("LastTestName");
     }
 
-    public void submitButton(){
+    public void submitButton() {
         driver.findElement(submit).click();
     }
 }
