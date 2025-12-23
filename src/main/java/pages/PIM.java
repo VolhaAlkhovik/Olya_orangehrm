@@ -13,7 +13,7 @@ public class PIM extends BasePage {
     }
 
     public AddingEmployee openAddEmployee() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='oxd-table-filter']")));
+        wait.until(ExpectedConditions.elementToBeClickable(addButton));
         driver.findElement(addButton).click();
         return new AddingEmployee(driver);
     }

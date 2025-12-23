@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Dashboard  extends BasePage {
 
-    private By pim = By.xpath("//span[text()='PIM']");
+    private By pim = By.xpath("//a[@href ='/web/index.php/pim/viewPimModule']");
 
     public Dashboard(WebDriver driver) {
         super(driver);

@@ -15,10 +15,9 @@ public class UnsuccessLogin extends BaseTest{
         LoginPage loginPage = new LoginPage(driver);
         loginPage.failedLogin(username, password);
 
-        String alert = driver.findElement(By.cssSelector(".oxd-alert-content-text")).getText();
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals("Invalid credentials", alert);
+        softAssert.assertEquals(loginPage.getTextOfFailedLogin(), "Invalid credentials");
         softAssert.assertEquals(driver.getCurrentUrl(), LOGIN_URL);
         softAssert.assertAll();
         driver.navigate().refresh();

@@ -43,6 +43,10 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    public String getTextOfFailedLogin() {
+        return driver.findElement(By.cssSelector(".oxd-alert-content-text")).getText();
+    }
+
     public LoginPage enterUsername(String name) {
         driver.findElement(username).sendKeys(name);
         return this;
