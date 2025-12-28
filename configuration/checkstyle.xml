@@ -43,8 +43,6 @@
         <module name="JavadocMethod"/>
         <module name="JavadocType"/>
         <module name="JavadocStyle"/>
-        <module name="JavadocVariable"/>
-
 
 
         <!-- Checks for Naming Conventions.                  -->
@@ -104,7 +102,9 @@
         <module name="AvoidInlineConditionals"/>
         <module name="EmptyStatement"/>
         <module name="EqualsHashCode"/>
-        <module name="HiddenField"/>
+        <module name="HiddenField">
+          <property name="ignoreConstructorParameter" value="true"/>
+        </module>
         <module name="IllegalInstantiation"/>
         <module name="MagicNumber"/>
         <module name="InnerAssignment"/>
@@ -117,9 +117,12 @@
         <!-- See http://checkstyle.sf.net/config_design.html -->
         <module name="HideUtilityClassConstructor"/>
         <module name="InterfaceIsType"/>
-        <module name="VisibilityModifier"/>
+        <module name="VisibilityModifier">
+        <property name="protectedAllowed" value="true"/>
+        </module>
 
-        <!-- Miscellaneous other checks.                   -->
+
+    <!-- Miscellaneous other checks.                   -->
         <!-- See http://checkstyle.sf.net/config_misc.html -->
         <module name="ArrayTypeStyle"/>
         <module name="TodoComment"/>
