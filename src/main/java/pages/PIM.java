@@ -6,16 +6,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class PIM extends BasePage {
 
-    private By addButton = By.xpath("//button[text()=' Add ']");
+  private By addButton = By.xpath("//button[text()=' Add ']");
 
-    public PIM(WebDriver driver) {
-        super(driver);
-    }
+  public PIM(WebDriver driver) {
+    super(driver);
+  }
 
-    public AddingEmployee openAddEmployee() {
-        wait.until(ExpectedConditions.elementToBeClickable(addButton));
-        driver.findElement(addButton).click();
-        return new AddingEmployee(driver);
-    }
-
+  public AddingEmployee openAddEmployee() {
+    wait.until(ExpectedConditions.elementToBeClickable(addButton));
+    driver.findElement(addButton).click();
+    return new AddingEmployee(driver);
+  }
 }
