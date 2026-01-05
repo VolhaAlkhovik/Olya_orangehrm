@@ -13,8 +13,8 @@ public class PIM extends BasePage {
   }
 
   public AddingEmployee openAddEmployee() {
-    wait.until(ExpectedConditions.elementToBeClickable(addButton));
-    driver.findElement(addButton).click();
+    waitUtils.waitForVisibility(addButton);
+    findElement(addButton).click();
     return new AddingEmployee(driver);
   }
 }

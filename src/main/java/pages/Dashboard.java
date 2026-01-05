@@ -13,8 +13,8 @@ public class Dashboard extends BasePage {
   }
 
   public PIM openPIM() {
-    wait.until(ExpectedConditions.elementToBeClickable(pim));
-    driver.findElement(pim).click();
+    waitUtils.waitForClickable(pim);
+    findElement(pim).click();
     return new PIM(driver);
   }
 }

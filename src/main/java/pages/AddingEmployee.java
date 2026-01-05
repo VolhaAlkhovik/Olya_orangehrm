@@ -17,26 +17,26 @@ public class AddingEmployee extends BasePage {
   }
 
   public void addEmployee(Employee employee) {
-    wait.until(ExpectedConditions.visibilityOfElementLocated(firstName));
-    driver.findElement(firstName).sendKeys(employee.getFirstName());
-    driver.findElement(middleName).sendKeys(employee.getMiddleName());
-    driver.findElement(lastName).sendKeys(employee.getLastName());
-    driver.findElement(submit).click();
+    waitUtils.waitForVisibility(firstName);
+    findElement(firstName).sendKeys(employee.getFirstName());
+    findElement(middleName).sendKeys(employee.getMiddleName());
+    findElement(lastName).sendKeys(employee.getLastName());
+    findElement(submit).click();
   }
 
   public void enterFirstName() {
-    driver.findElement(firstName).sendKeys("FirstTestName");
+    findElement(firstName).sendKeys("FirstTestName");
   }
 
   public void enterMiddleName() {
-    driver.findElement(middleName).sendKeys("MiddleTestName");
+    findElement(middleName).sendKeys("MiddleTestName");
   }
 
   public void enterLastName() {
-    driver.findElement(lastName).sendKeys("LastTestName");
+    findElement(lastName).sendKeys("LastTestName");
   }
 
   public void submitButton() {
-    driver.findElement(submit).click();
+    findElement(submit).click();
   }
 }

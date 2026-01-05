@@ -18,7 +18,7 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage login(String name, String pass) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(submitButton));
+        waitUtils.waitForVisibility(submitButton);
         enterUsername(name)
                 .enterPassword(pass)
                     .submit();
@@ -26,39 +26,39 @@ public class LoginPage extends BasePage {
     }
 
     public Dashboard successLogin(String name, String pass) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(submitButton));
+        waitUtils.waitForVisibility(submitButton);
         enterUsername(name)
                 .enterPassword(pass)
                     .submit();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(dashboardMarker));
+        waitUtils.waitForVisibility(dashboardMarker);
         return new Dashboard(driver);
     }
 
     public LoginPage failedLogin(String name, String pass) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(submitButton));
+        waitUtils.waitForVisibility(submitButton);
         enterUsername(name)
                 .enterPassword(pass)
                     .submit();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(errorMarker));
+        waitUtils.waitForVisibility(errorMarker);
         return this;
     }
 
     public String getTextOfFailedLogin() {
-        return driver.findElement(By.cssSelector(".oxd-alert-content-text")).getText();
+        return findElement(By.cssSelector(".oxd-alert-content-text")).getText();
     }
 
     public LoginPage enterUsername(String name) {
-        driver.findElement(username).sendKeys(name);
+        findElement(username).sendKeys(name);
         return this;
     }
 
     public LoginPage enterPassword(String pass) {
-        driver.findElement(password).sendKeys(pass);
+        findElement(password).sendKeys(pass);
         return this;
     }
 
     public void submit() {
-        driver.findElement(submitButton).click();
+        findElement(submitButton).click();
     }
 
 }

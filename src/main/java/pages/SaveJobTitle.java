@@ -17,11 +17,10 @@ public class SaveJobTitle extends BasePage {
   }
 
   public void enterJobTitle(Job jobTitle) {
-    wait.until(ExpectedConditions.elementToBeClickable(saveButton));
-    driver.findElement(jobTitleinput).sendKeys(jobTitle.getJobTitlefield());
-    driver.findElement(saveButton).click();
-    wait.until(
-        ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//div[@class='oxd-toast oxd-toast--success oxd-toast-container--toast']")));
+    waitUtils.waitForClickable(saveButton);
+    findElement(jobTitleinput).sendKeys(jobTitle.getJobTitlefield());
+    findElement(saveButton).click();
+    waitUtils.waitForVisibility(
+            By.xpath("//div[@class='oxd-toast oxd-toast--success oxd-toast-container--toast']"));
   }
 }

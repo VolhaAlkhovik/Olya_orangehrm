@@ -13,8 +13,8 @@ public class JobTitle extends BasePage {
   }
 
   public SaveJobTitle clickAddButton() {
-    wait.until(ExpectedConditions.visibilityOfElementLocated(addButton));
-    driver.findElement(addButton).click();
+    waitUtils.waitForVisibility(addButton);
+    findElement(addButton).click();
     return new SaveJobTitle(driver);
   }
 }

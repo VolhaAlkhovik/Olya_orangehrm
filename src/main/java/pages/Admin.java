@@ -16,14 +16,14 @@ public class Admin extends BasePage {
   }
 
   public Admin clickJobButton() {
-    wait.until(ExpectedConditions.elementToBeClickable(jobDropDown));
-    driver.findElement(jobDropDown).click();
+    waitUtils.waitForClickable(jobDropDown);
+    findElement(jobDropDown).click();
     return this;
   }
 
   public JobTitle clickJobTitle() {
-    wait.until(ExpectedConditions.elementToBeClickable(jobDropDown));
-    driver.findElement(jobTitle).click();
+    waitUtils.waitForClickable(jobDropDown);
+    findElement(jobTitle).click();
     return new JobTitle(driver);
   }
 }

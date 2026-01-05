@@ -14,8 +14,8 @@ public class SidePanel extends BasePage {
   }
 
   public Admin adminButton() {
-    wait.until(ExpectedConditions.visibilityOfElementLocated(sidepanel));
-    driver.findElement(admin).click();
+    waitUtils.waitForVisibility(sidepanel);
+    findElement(admin).click();
     return new Admin(driver);
   }
 }
