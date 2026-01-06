@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class PIM extends BasePage {
 
@@ -13,8 +12,7 @@ public class PIM extends BasePage {
   }
 
   public AddingEmployee openAddEmployee() {
-    waitUtils.waitForVisibility(addButton);
-    findElement(addButton).click();
+    click(addButton);
     return new AddingEmployee(driver);
   }
 }

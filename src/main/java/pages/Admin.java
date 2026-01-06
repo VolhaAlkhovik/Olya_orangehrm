@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Admin extends BasePage {
 
@@ -16,14 +15,12 @@ public class Admin extends BasePage {
   }
 
   public Admin clickJobButton() {
-    waitUtils.waitForClickable(jobDropDown);
-    findElement(jobDropDown).click();
+    click(jobDropDown);
     return this;
   }
 
   public JobTitle clickJobTitle() {
-    waitUtils.waitForClickable(jobDropDown);
-    findElement(jobTitle).click();
+    click(jobTitle);
     return new JobTitle(driver);
   }
 }

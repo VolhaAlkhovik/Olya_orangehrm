@@ -8,6 +8,7 @@ public class Config {
   private static final Properties PROPERTIES = new Properties();
 
   private Config() {
+
   }
 
   static {

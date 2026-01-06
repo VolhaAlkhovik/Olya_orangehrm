@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Dashboard extends BasePage {
 
@@ -13,8 +12,7 @@ public class Dashboard extends BasePage {
   }
 
   public PIM openPIM() {
-    waitUtils.waitForClickable(pim);
-    findElement(pim).click();
+    click(pim);
     return new PIM(driver);
   }
 }

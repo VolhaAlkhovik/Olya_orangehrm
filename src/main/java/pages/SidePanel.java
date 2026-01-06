@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SidePanel extends BasePage {
 
@@ -14,8 +13,8 @@ public class SidePanel extends BasePage {
   }
 
   public Admin adminButton() {
-    waitUtils.waitForVisibility(sidepanel);
-    findElement(admin).click();
+    wait.waitForVisibility(sidepanel);
+    click(admin);
     return new Admin(driver);
   }
 }

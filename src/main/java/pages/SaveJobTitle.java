@@ -3,7 +3,6 @@ package pages;
 import entities.Job;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SaveJobTitle extends BasePage {
 
@@ -11,16 +10,20 @@ public class SaveJobTitle extends BasePage {
       By.xpath(
           "//div[@class='oxd-input-group__label-wrapper']/following::input[contains(@class,'oxd-input')][1]");
   private By saveButton = By.xpath("//button[@type = 'submit']");
+  private By jobDescription =
+      By.xpath(
+          "//textarea[@class='oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical'][1]");
+  private By successToaster =
+      By.xpath("//div[@class='oxd-toast oxd-toast--success oxd-toast-container--toast']");
 
   public SaveJobTitle(WebDriver driver) {
     super(driver);
   }
 
   public void enterJobTitle(Job jobTitle) {
-    waitUtils.waitForClickable(saveButton);
-    findElement(jobTitleinput).sendKeys(jobTitle.getJobTitlefield());
-    findElement(saveButton).click();
-    waitUtils.waitForVisibility(
-            By.xpath("//div[@class='oxd-toast oxd-toast--success oxd-toast-container--toast']"));
+    type(jobTitleinput, jobTitle.getJobTitlefield());
+    type(jobDescription, jobTitle.getJobDescription());
+    click(saveButton);
+    wait.waitForVisibility(successToaster);
   }
 }

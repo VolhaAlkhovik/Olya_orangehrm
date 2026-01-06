@@ -3,7 +3,6 @@ package pages;
 import entities.Employee;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class AddingEmployee extends BasePage {
 
@@ -17,26 +16,9 @@ public class AddingEmployee extends BasePage {
   }
 
   public void addEmployee(Employee employee) {
-    waitUtils.waitForVisibility(firstName);
-    findElement(firstName).sendKeys(employee.getFirstName());
-    findElement(middleName).sendKeys(employee.getMiddleName());
-    findElement(lastName).sendKeys(employee.getLastName());
-    findElement(submit).click();
-  }
-
-  public void enterFirstName() {
-    findElement(firstName).sendKeys("FirstTestName");
-  }
-
-  public void enterMiddleName() {
-    findElement(middleName).sendKeys("MiddleTestName");
-  }
-
-  public void enterLastName() {
-    findElement(lastName).sendKeys("LastTestName");
-  }
-
-  public void submitButton() {
-    findElement(submit).click();
+    type(firstName, employee.getFirstName());
+    type(middleName, employee.getMiddleName());
+    type(lastName, employee.getLastName());
+    click(submit);
   }
 }
