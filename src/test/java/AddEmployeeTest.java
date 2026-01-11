@@ -1,5 +1,7 @@
 import config.Config;
 import entities.Employee;
+import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
 
@@ -16,12 +18,14 @@ public class AddEmployeeTest extends BaseTest {
             .build();
 
     LoginPage loginPage = new LoginPage(driver);
-    Dashboard dashboard =
-        loginPage.successLogin(Config.get("app.username"), Config.get("app.password"));
+    Dashboard dashboard = loginPage.successLogin(Config.get("app.username"), Config.get("app.password"));
     PIM pim = dashboard.openPIM();
 
     AddingEmployee addingEmployee = pim.openAddEmployee();
 
     addingEmployee.addEmployee(employee);
+
+    Assert.assertTrue(addingEmployee.isSuccessToasterDisplayed(),"Success toaster is not displayed");
+
   }
 }

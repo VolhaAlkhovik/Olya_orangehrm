@@ -20,10 +20,15 @@ public class SaveJobTitle extends BasePage {
     super(driver);
   }
 
-  public void enterJobTitle(Job jobTitle) {
+  public SaveJobTitle enterJobTitle(Job jobTitle) {
     type(jobTitleinput, jobTitle.getJobTitlefield());
     type(jobDescription, jobTitle.getJobDescription());
     click(saveButton);
     wait.waitForVisibility(successToaster);
+    return this;
+  }
+
+  public boolean isSuccessToasterDisplayed(){
+      return isDisplayed(successToaster);
   }
 }

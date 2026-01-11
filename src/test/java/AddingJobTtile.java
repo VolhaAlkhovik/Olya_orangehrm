@@ -1,7 +1,10 @@
 import config.Config;
 import entities.Job;
+import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
+import pages.SaveJobTitle;
 import pages.SidePanel;
 
 public class AddingJobTtile extends BaseTest {
@@ -19,6 +22,11 @@ public class AddingJobTtile extends BaseTest {
             .jobDescription(faker.job().keySkills())
             .build();
 
-    sidePanel.adminButton().clickJobButton().clickJobTitle().clickAddButton().enterJobTitle(job);
+    SaveJobTitle saveJobTitle = sidePanel.adminButton().clickJobButton().clickJobTitle().clickAddButton().enterJobTitle(job);
+
+    Assert.assertTrue(saveJobTitle.isSuccessToasterDisplayed(), "Success toaster is not displayed");
+
   }
+
+
 }
