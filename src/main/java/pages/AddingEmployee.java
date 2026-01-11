@@ -23,7 +23,7 @@ public class AddingEmployee extends BasePage {
     click(submit);
   }
 
-    public boolean isSuccessToasterDisplayed(){
+    public boolean isSuccessToasterDisplayed() {
         return isDisplayed(successToaster);
     }
 

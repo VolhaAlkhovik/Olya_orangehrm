@@ -28,7 +28,7 @@ public class SaveJobTitle extends BasePage {
     return this;
   }
 
-  public boolean isSuccessToasterDisplayed(){
+  public boolean isSuccessToasterDisplayed() {
       return isDisplayed(successToaster);
   }
 }
