@@ -19,8 +19,8 @@ public class Admin extends BasePage {
     return this;
   }
 
-  public JobTitle clickJobTitle() {
+  public JobTitleView clickJobTitle() {
     click(jobTitle);
-    return new JobTitle(driver);
+    return new JobTitleView(driver);
   }
 }
