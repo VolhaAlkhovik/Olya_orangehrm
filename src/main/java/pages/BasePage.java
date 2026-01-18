@@ -36,10 +36,10 @@ public class BasePage {
   }
 
   protected boolean isDisplayed(By locator) {
-      try {
-          return findElement(locator).isDisplayed();
-      } catch (Exception e) {
-          return false;
-      }
+    try {
+      return findElement(locator).isDisplayed();
+    } catch (Exception e) {
+      return false;
+    }
   }
 }

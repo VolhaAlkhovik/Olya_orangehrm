@@ -16,4 +16,3 @@ public class PIM extends BasePage {
     return new AddingEmployee(driver);
   }
 }
-
