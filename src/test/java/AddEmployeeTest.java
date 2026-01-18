@@ -1,25 +1,31 @@
+import config.Config;
 import entities.Employee;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.AddingEmployee;
-import pages.Dashboard;
-import pages.LoginPage;
-import pages.PIM;
+import pages.*;
 
 public class AddEmployeeTest extends BaseTest {
 
-    @Test
-    public void addEmployee() {
+  @Test
+  public void addEmployee() {
 
-        LoginPage loginPage = new LoginPage(driver);
-        Dashboard dashboard = loginPage.successLogin("Admin", "admin123");
+    Employee employee =
+        Employee.builder()
+            .firstName(faker.name().firstName())
+            .middleName(faker.name().nameWithMiddle())
+            .lastName(faker.name().lastName())
+            .build();
 
-        PIM pim = dashboard.openPIM();
+    LoginPage loginPage = new LoginPage(driver);
+    Dashboard dashboard = loginPage.successLogin(Config.get("app.username"), Config.get("app.password"));
+    PIM pim = dashboard.openPIM();
 
-        AddingEmployee addingEmployee = pim.openAddEmployee();
+    AddingEmployee addingEmployee = pim.openAddEmployee();
 
-        Employee employee = new Employee("FirstTestName", "MiddleTestName","LastTestName");
-        addingEmployee.addEmployee(employee);
-    }
+    addingEmployee.addEmployee(employee);
+
+    Assert.assertTrue(addingEmployee.isSuccessToasterDisplayed(),"Success toaster is not displayed");
+
+  }
 }

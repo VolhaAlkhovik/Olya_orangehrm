@@ -3,16 +3,16 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class PIM extends BasePage {
+public class JobTitle extends BasePage {
 
   private By addButton = By.xpath("//button[text()=' Add ']");
 
-  public PIM(WebDriver driver) {
+  public JobTitle(WebDriver driver) {
     super(driver);
   }
 
-  public AddingEmployee openAddEmployee() {
+  public SaveJobTitle clickAddButton() {
     click(addButton);
-    return new AddingEmployee(driver);
+    return new SaveJobTitle(driver);
   }
 }
