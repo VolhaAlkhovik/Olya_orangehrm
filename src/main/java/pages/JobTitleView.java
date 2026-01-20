@@ -39,7 +39,7 @@ public class JobTitleView extends BasePage {
     return this;
   }
 
-  public boolean isJobTitleDeleted(){
+  public boolean isJobTitleDeleted() {
     return isDisplayed(successMessageDeleted);
   }
 }
