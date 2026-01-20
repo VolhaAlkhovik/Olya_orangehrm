@@ -7,12 +7,12 @@ public class JobTitleView extends BasePage {
 
   private By addButton = By.xpath("//button[text()=' Add ']");
   private By yesDeleteButton =
-      By.xpath(
-          "//button[@class='oxd-button oxd-button--medium oxd-button--label-danger orangehrm-button-margin']");
+      By.cssSelector(
+          "button.oxd-button--label-danger");
   private By successButton =
-      By.xpath("//div[@class='oxd-toast oxd-toast--success oxd-toast-container--toast']");
+      By.cssSelector("div.oxd-toast--success");
   private By successMessageDeleted =
-      By.xpath("//p[@class='oxd-text oxd-text--p oxd-text--toast-message oxd-toast-content-text']");
+      By.cssSelector("p.oxd-text--toast-message");
 
   public JobTitleView(WebDriver driver) {
     super(driver);
@@ -26,9 +26,9 @@ public class JobTitleView extends BasePage {
   public JobTitleView removeJobTitle(String jobTitle) {
     By rowJobTitle =
         By.xpath(
-            "//div[normalize-space()='"
+            "//div[contains(normalize-space(.),'"
                 + jobTitle
-                + "']"
+                + "')]"
                 + "/ancestor::div[contains(@class,'row')]//button//i[contains(@class,'bi-trash')]");
     click(rowJobTitle);
     return this;
@@ -39,9 +39,7 @@ public class JobTitleView extends BasePage {
     return this;
   }
 
-  public JobTitleView checkSuccessToaster() {
-    isDisplayed(successButton);
-    isDisplayed(successMessageDeleted);
-    return this;
+  public boolean isJobTitleDeleted(){
+    return isDisplayed(successMessageDeleted);
   }
 }

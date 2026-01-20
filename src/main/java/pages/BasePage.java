@@ -17,6 +17,7 @@ public class BasePage {
   }
 
   protected void click(By locator) {
+    wait.waitForVisibility(locator);
     wait.waitForClickable(locator).click();
   }
 
