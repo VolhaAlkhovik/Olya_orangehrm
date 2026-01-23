@@ -1,6 +1,8 @@
 package core;
 
 import java.time.Duration;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,5 +29,9 @@ public class WaitUtils {
     wait.until(ExpectedConditions.invisibilityOfElementLocated(
             By.cssSelector("div.oxd-form-loader")
     ));
+  }
+
+  public List<WebElement> waitforAllVisible(By locator) {
+    return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
   }
 }

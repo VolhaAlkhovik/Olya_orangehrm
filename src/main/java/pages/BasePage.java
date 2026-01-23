@@ -6,6 +6,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public class BasePage {
 
   protected WebDriver driver;
@@ -49,7 +51,7 @@ public class BasePage {
     }
   }
 
-  protected void selectCustomDropDown(By dropdownLocator, By optionalLocator, String expectedValue){
+  protected void selectCustomDropDown(By dropdownLocator, By optionsLocator, String expectedValue){
     wait.waitForLoaderToDisappear();
 
     WebElement dropdown = wait.waitForClickable(dropdownLocator);
@@ -59,10 +61,18 @@ public class BasePage {
       System.out.println("Dropdown already has value: " + expectedValue);
       return;
     }
-
     dropdown.click();
-    wait.waitForClickable(optionalLocator);
-    findElement(optionalLocator).click();
+
+    List<WebElement> options = wait.waitforAllVisible(optionsLocator);
+
+    for(WebElement option : options) {
+      if (option.getText().trim().equalsIgnoreCase(expectedValue)){
+        option.click();
+        return;
+      }
+    }
+
+    throw new RuntimeException("Value not fount in dropdown: " + expectedValue);
   }
 
   protected void selectRadio(By locator){

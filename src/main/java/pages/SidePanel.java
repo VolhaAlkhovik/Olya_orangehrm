@@ -9,6 +9,7 @@ public class SidePanel extends BasePage {
   private By admin = By.xpath("//a[@href = '/web/index.php/admin/viewAdminModule']");
   private By pim = By.xpath("//a[contains(@href,'pim/viewPimModule')]");
 
+
   public SidePanel(WebDriver driver) {
     super(driver);
   }
