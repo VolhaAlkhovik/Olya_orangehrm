@@ -8,7 +8,7 @@ public class LoginPage extends BasePage {
   private By username = By.name("username");
   private By password = By.name("password");
   private By submitButton = By.xpath("//button[contains(@class, 'orangehrm-login-button')]");
-  private By dashboardMarker = By.xpath("//span[@class = 'oxd-userdropdown-tab']");
+  private By dashboardMarker = By.xpath("//h6[@class = 'oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-module']");
   private By errorMarker = By.cssSelector("p.oxd-alert-content-text");
 
   public LoginPage(WebDriver driver) {
@@ -21,8 +21,8 @@ public class LoginPage extends BasePage {
   }
 
   public Dashboard successLogin(String name, String pass) {
+    wait.waitForVisibility(username);
     enterUsername(name).enterPassword(pass).submit();
-    wait.waitForVisibility(dashboardMarker);
     return new Dashboard(driver);
   }
 

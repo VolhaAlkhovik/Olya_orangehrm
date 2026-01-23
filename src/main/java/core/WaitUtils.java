@@ -22,4 +22,10 @@ public class WaitUtils {
   public WebElement waitForClickable(By locator) {
     return wait.until(ExpectedConditions.elementToBeClickable(locator));
   }
+
+  public void waitForLoaderToDisappear() {
+    wait.until(ExpectedConditions.invisibilityOfElementLocated(
+            By.cssSelector("div.oxd-form-loader")
+    ));
+  }
 }
