@@ -1,12 +1,11 @@
 package pages;
 
 import core.WaitUtils;
+import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 public class BasePage {
 
@@ -37,7 +36,7 @@ public class BasePage {
     if (text != null && !text.isEmpty()) {
       element.sendKeys(text);
     }
-    }
+  }
 
   protected String getText(By locator) {
     return findElement(locator).getText();
@@ -51,7 +50,7 @@ public class BasePage {
     }
   }
 
-  protected void selectCustomDropDown(By dropdownLocator, By optionsLocator, String expectedValue){
+  protected void selectCustomDropDown(By dropdownLocator, By optionsLocator, String expectedValue) {
     wait.waitForLoaderToDisappear();
 
     WebElement dropdown = wait.waitForClickable(dropdownLocator);
@@ -65,8 +64,8 @@ public class BasePage {
 
     List<WebElement> options = wait.waitforAllVisible(optionsLocator);
 
-    for(WebElement option : options) {
-      if (option.getText().trim().equalsIgnoreCase(expectedValue)){
+    for (WebElement option : options) {
+      if (option.getText().trim().equalsIgnoreCase(expectedValue)) {
         option.click();
         return;
       }
@@ -75,12 +74,11 @@ public class BasePage {
     throw new RuntimeException("Value not fount in dropdown: " + expectedValue);
   }
 
-  protected void selectRadio(By locator){
+  protected void selectRadio(By locator) {
     wait.waitForLoaderToDisappear();
     WebElement radio = findElement(locator);
-    if(!radio.isSelected()){
+    if (!radio.isSelected()) {
       radio.click();
     }
   }
-
 }

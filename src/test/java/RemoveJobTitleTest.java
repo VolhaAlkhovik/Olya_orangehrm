@@ -1,4 +1,3 @@
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import config.Config;
 import entities.Job;
 import org.testng.Assert;
@@ -35,6 +34,7 @@ public class RemoveJobTitleTest extends BaseTest {
     JobTitleView jobTitleView = new JobTitleView(driver);
     jobTitleView.removeJobTitle(job.getJobTitlefield()).clickYesButton();
 
-    Assert.assertTrue(jobTitleView.isJobTitleDeleted(), "Success toaster about deleting is not displayed");
+    Assert.assertTrue(
+        jobTitleView.isJobTitleDeleted(), "Success toaster about deleting is not displayed");
   }
 }

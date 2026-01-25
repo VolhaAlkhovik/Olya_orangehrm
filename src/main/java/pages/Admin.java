@@ -9,8 +9,11 @@ public class Admin extends BasePage {
   private By jobTitle =
       By.xpath(
           "//a[contains(@class, 'oxd-topbar-body-nav-tab-link') and normalize-space(text())='Job Titles']");
-  private By organisationDropDown = By.xpath("//span[contains(@class, 'oxd-topbar-body-nav-tab-item') and normalize-space(.)='Organization']");
-  private By locations = By.xpath("//a[contains(@class,'nav-tab-link') and normalize-space(.)='Locations']");
+  private By organisationDropDown =
+      By.xpath(
+          "//span[contains(@class, 'oxd-topbar-body-nav-tab-item') and normalize-space(.)='Organization']");
+  private By locations =
+      By.xpath("//a[contains(@class,'nav-tab-link') and normalize-space(.)='Locations']");
 
   public Admin(WebDriver driver) {
     super(driver);
