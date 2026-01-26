@@ -4,10 +4,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class DateUtils {
-    private static final DateTimeFormatter FORMATTER =
-            DateTimeFormatter.ofPattern("yyyy-dd-MM");
+  private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-dd-MM");
 
-    public static String format(LocalDate date){
-        return date.format(FORMATTER);
+    private DateUtils() {
     }
+
+        public static String format(LocalDate date) {
+    return date.format(FORMATTER);
+  }
 }

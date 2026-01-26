@@ -19,7 +19,7 @@ public class SidePanel extends BasePage {
     return new Admin(driver);
   }
 
-  public PIM pimButton(){
+  public PIM pimButton() {
     click(pim);
     return new PIM(driver);
   }

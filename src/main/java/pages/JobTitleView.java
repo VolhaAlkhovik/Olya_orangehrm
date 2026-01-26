@@ -6,13 +6,9 @@ import org.openqa.selenium.WebDriver;
 public class JobTitleView extends BasePage {
 
   private By addButton = By.xpath("//button[text()=' Add ']");
-  private By yesDeleteButton =
-      By.cssSelector(
-          "button.oxd-button--label-danger");
-  private By successButton =
-      By.cssSelector("div.oxd-toast--success");
-  private By successMessageDeleted =
-      By.cssSelector("p.oxd-text--toast-message");
+  private By yesDeleteButton = By.cssSelector("button.oxd-button--label-danger");
+  private By successButton = By.cssSelector("div.oxd-toast--success");
+  private By successMessageDeleted = By.cssSelector("p.oxd-text--toast-message");
 
   public JobTitleView(WebDriver driver) {
     super(driver);

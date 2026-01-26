@@ -10,8 +10,7 @@ public class AddingEmployee extends BasePage {
   private By middleName = By.name("middleName");
   private By lastName = By.name("lastName");
   private By submit = By.xpath("//button[@type = 'submit']");
-  private By successToaster =
-      By.cssSelector("div.oxd-toast--success");
+  private By successToaster = By.cssSelector("div.oxd-toast--success");
   private By loader = By.cssSelector("div.oxd-form-loader");
 
   public AddingEmployee(WebDriver driver) {
@@ -19,7 +18,7 @@ public class AddingEmployee extends BasePage {
   }
 
   public void addEmployee(Employee employee) {
-    wait.waitForLoaderToDisappear(loader);
+    wait.waitForLoaderToDisappear();
     type(firstName, employee.getFirstName());
     type(middleName, employee.getMiddleName());
     type(lastName, employee.getLastName());
