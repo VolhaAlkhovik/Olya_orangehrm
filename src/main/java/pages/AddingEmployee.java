@@ -11,13 +11,15 @@ public class AddingEmployee extends BasePage {
   private By lastName = By.name("lastName");
   private By submit = By.xpath("//button[@type = 'submit']");
   private By successToaster =
-      By.xpath("//div[@class='oxd-toast oxd-toast--success oxd-toast-container--toast']");
+      By.cssSelector("div.oxd-toast--success");
+  private By loader = By.cssSelector("div.oxd-form-loader");
 
   public AddingEmployee(WebDriver driver) {
     super(driver);
   }
 
   public void addEmployee(Employee employee) {
+    wait.waitForLoaderToDisappear(loader);
     type(firstName, employee.getFirstName());
     type(middleName, employee.getMiddleName());
     type(lastName, employee.getLastName());

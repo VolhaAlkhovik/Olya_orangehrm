@@ -9,14 +9,15 @@ public class JobDetails extends BasePage{
     private By jobSalesPersonOption = By.xpath("//div[@class='oxd-select-option']//span[text()='Sales Representative']");
     private By saveButton = By.xpath("//button[@type = 'submit']");
     private By personalDetailsButton = By.xpath("//a[contains(@href,'viewPersonalDetails')]");
+    private By loader = By.cssSelector("div.oxd-form-loader");
 
     public JobDetails (WebDriver driver){
         super(driver);
     }
 
     public JobDetails changeJobTitle(){
-        wait.waitForLoaderToDisappear();
-        wait.waitForClickable(jobTitle);
+       // wait.waitForLoaderToDisappear(loader);
+        //wait.waitForClickable(jobTitle);
         selectCustomDropDown(jobTitle, jobSalesPersonOption, "Sales Representative");
         click(saveButton);
         return new JobDetails(driver);

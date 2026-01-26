@@ -26,7 +26,6 @@ public class BasePage {
   }
 
   protected void type(By locator, String text) {
-    wait.waitForLoaderToDisappear();
     WebElement element = findElement(locator);
 
     element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
@@ -50,15 +49,9 @@ public class BasePage {
   }
 
   protected void selectCustomDropDown(By dropdownLocator, By optionalLocator, String expectedValue){
-    wait.waitForLoaderToDisappear();
-
     WebElement dropdown = wait.waitForClickable(dropdownLocator);
     String currentValue = dropdown.getText().trim();
 
-    if (currentValue.equalsIgnoreCase(expectedValue)) {
-      System.out.println("Dropdown already has value: " + expectedValue);
-      return;
-    }
 
     dropdown.click();
     wait.waitForClickable(optionalLocator);
@@ -66,7 +59,6 @@ public class BasePage {
   }
 
   protected void selectRadio(By locator){
-    wait.waitForLoaderToDisappear();
     WebElement radio = findElement(locator);
     if(!radio.isSelected()){
       radio.click();

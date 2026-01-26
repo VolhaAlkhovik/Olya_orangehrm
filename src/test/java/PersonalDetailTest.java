@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.*;
+import utils.RandomDateFactory;
 
 public class PersonalDetailTest extends BaseTest {
 
@@ -14,10 +15,10 @@ public class PersonalDetailTest extends BaseTest {
             .lastName(faker.name().lastName())
             .otherId(faker.idNumber().valid())
             .driverLicenseNumber(faker.idNumber().ssnValid())
-            .licenseExpirydate("2005-25-09")
+            .licenseExpirydate(RandomDateFactory.randomLicenseExpiry())
             .nationality("Belgian")
             .maritalStatus("Single")
-            .dateOfBirth("1997-26-03")
+            .dateOfBirth(RandomDateFactory.randomBirthDate())
             .gender("Male")
             .build();
 
