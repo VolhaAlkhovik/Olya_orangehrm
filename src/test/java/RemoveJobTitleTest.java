@@ -1,16 +1,17 @@
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import config.Config;
 import entities.Job;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.JobTitleView;
 import pages.LoginPage;
 import pages.SaveJobTitle;
 import pages.SidePanel;
 
-public class AddingJobTtile extends BaseTest {
+public class RemoveJobTitleTest extends BaseTest {
 
   @Test
-  public void addingJobTitle() {
-
+  public void removeJobTitle() {
     LoginPage loginPage = new LoginPage(driver);
     loginPage.successLogin(Config.get("app.username"), Config.get("app.password"));
     SidePanel sidePanel = new SidePanel(driver);
@@ -30,5 +31,10 @@ public class AddingJobTtile extends BaseTest {
             .enterJobTitle(job);
 
     Assert.assertTrue(saveJobTitle.isSuccessToasterDisplayed(), "Success toaster is not displayed");
+
+    JobTitleView jobTitleView = new JobTitleView(driver);
+    jobTitleView.removeJobTitle(job.getJobTitlefield()).clickYesButton();
+
+    Assert.assertTrue(jobTitleView.isJobTitleDeleted(), "Success toaster about deleting is not displayed");
   }
 }

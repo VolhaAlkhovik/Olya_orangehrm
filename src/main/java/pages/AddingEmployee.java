@@ -10,7 +10,8 @@ public class AddingEmployee extends BasePage {
   private By middleName = By.name("middleName");
   private By lastName = By.name("lastName");
   private By submit = By.xpath("//button[@type = 'submit']");
-  private By successToaster = By.xpath("//div[@class='oxd-toast oxd-toast--success oxd-toast-container--toast']");
+  private By successToaster =
+      By.xpath("//div[@class='oxd-toast oxd-toast--success oxd-toast-container--toast']");
 
   public AddingEmployee(WebDriver driver) {
     super(driver);
@@ -23,8 +24,7 @@ public class AddingEmployee extends BasePage {
     click(submit);
   }
 
-    public boolean isSuccessToasterDisplayed() {
-        return isDisplayed(successToaster);
-    }
-
+  public boolean isSuccessToasterDisplayed() {
+    return isDisplayed(successToaster);
+  }
 }

@@ -17,6 +17,7 @@ public class BasePage {
   }
 
   protected void click(By locator) {
+    wait.waitForVisibility(locator);
     wait.waitForClickable(locator).click();
   }
 
@@ -36,10 +37,10 @@ public class BasePage {
   }
 
   protected boolean isDisplayed(By locator) {
-      try {
-          return findElement(locator).isDisplayed();
-      } catch (Exception e) {
-          return false;
-      }
+    try {
+      return findElement(locator).isDisplayed();
+    } catch (Exception e) {
+      return false;
+    }
   }
 }
