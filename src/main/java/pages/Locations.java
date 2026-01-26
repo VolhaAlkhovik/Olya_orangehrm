@@ -11,7 +11,8 @@ public class Locations extends BasePage {
   private By countryDropDown = By.cssSelector("div.oxd-select-text-input");
   private By countryOption = By.cssSelector("div.oxd-select-option");
   private By searchButton = By.xpath("//button[@type = 'submit']");
-  private By tableHeaders = By.cssSelector("div.oxd-table-header-cell.oxd-padding-cell.oxd-table-th");
+  private By tableHeaders =
+      By.cssSelector("div.oxd-table-header-cell.oxd-padding-cell.oxd-table-th");
   private By dataRows = By.cssSelector("div.oxd-table-body div.oxd-table-row");
   private By tableCells = By.cssSelector("div.oxd-table-header div.oxd-table-cell");
 
@@ -30,21 +31,21 @@ public class Locations extends BasePage {
     return new Locations(driver);
   }
 
-  public int getColumnIndex (String columnName){
-      List <WebElement> headers = wait.waitforAllVisible(tableHeaders);
+  public int getColumnIndex(String columnName) {
+    List<WebElement> headers = wait.waitforAllVisible(tableHeaders);
 
-      for (int i = 0; i < headers.size(); i++) {
-          if (headers.get(i).getText().trim().equalsIgnoreCase(columnName)){
-              return i;
-          }
+    for (int i = 0; i < headers.size(); i++) {
+      if (headers.get(i).getText().trim().equalsIgnoreCase(columnName)) {
+        return i;
       }
-      throw new RuntimeException("Column not found" + columnName);
+    }
+    throw new RuntimeException("Column not found" + columnName);
   }
 
   public List<String> getFilteredCountries() {
 
-      wait.waitForLoaderToDisappear();
-      int countryIndex = getColumnIndex("Country");
+    wait.waitForLoaderToDisappear();
+    int countryIndex = getColumnIndex("Country");
 
     return wait.waitforAllVisible(dataRows).stream()
         .map(row -> row.findElements(tableCells))

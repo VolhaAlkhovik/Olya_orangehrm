@@ -35,7 +35,7 @@ public class BasePage {
     if (text != null && !text.isEmpty()) {
       element.sendKeys(text);
     }
-    }
+  }
 
   protected String getText(By locator) {
     return findElement(locator).getText();
@@ -49,7 +49,8 @@ public class BasePage {
     }
   }
 
-  protected void selectCustomDropDown(By dropdownLocator, By optionalLocator, String expectedValue){
+  protected void selectCustomDropDown(
+      By dropdownLocator, By optionalLocator, String expectedValue) {
     wait.waitForLoaderToDisappear();
 
     WebElement dropdown = wait.waitForClickable(dropdownLocator);
@@ -65,12 +66,11 @@ public class BasePage {
     findElement(optionalLocator).click();
   }
 
-  protected void selectRadio(By locator){
+  protected void selectRadio(By locator) {
     wait.waitForLoaderToDisappear();
     WebElement radio = findElement(locator);
-    if(!radio.isSelected()){
+    if (!radio.isSelected()) {
       radio.click();
     }
   }
-
 }
