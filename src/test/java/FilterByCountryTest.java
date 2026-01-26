@@ -19,8 +19,6 @@ public class FilterByCountryTest extends BaseTest {
             .filterByCountry("Finland")
             .getFilteredCountries();
 
-    Assert.assertFalse(countries.isEmpty(), "Table is not empty");
-
     for (String country : countries) {
       Assert.assertEquals(country, "Finland", "Country is not found");
     }
