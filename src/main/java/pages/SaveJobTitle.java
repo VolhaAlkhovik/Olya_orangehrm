@@ -13,14 +13,15 @@ public class SaveJobTitle extends BasePage {
   private By jobDescription =
       By.xpath(
           "//textarea[@class='oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical'][1]");
-  private By successToaster =
-      By.xpath("//div[@class='oxd-toast oxd-toast--success oxd-toast-container--toast']");
+  private By successToaster = By.cssSelector("div.oxd-toast--success");
+  private By loader = By.cssSelector("div.oxd-form-loader");
 
   public SaveJobTitle(WebDriver driver) {
     super(driver);
   }
 
   public SaveJobTitle enterJobTitle(Job jobTitle) {
+    wait.waitForLoaderToDisappear();
     type(jobTitleinput, jobTitle.getJobTitlefield());
     type(jobDescription, jobTitle.getJobDescription());
     click(saveButton);
