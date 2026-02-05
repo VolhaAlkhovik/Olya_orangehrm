@@ -28,7 +28,7 @@ public class Locations extends BasePage {
   public Locations filterByCountry(String country) {
     selectCustomDropDown(countryDropDown, countryOption, country);
     click(searchButton);
-    return new Locations(driver);
+    return this;
   }
 
   public int getColumnIndex(String columnName) {

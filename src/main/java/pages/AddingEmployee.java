@@ -11,7 +11,6 @@ public class AddingEmployee extends BasePage {
   private By lastName = By.name("lastName");
   private By submit = By.xpath("//button[@type = 'submit']");
   private By successToaster = By.cssSelector("div.oxd-toast--success");
-  private By loader = By.cssSelector("div.oxd-form-loader");
 
   public AddingEmployee(WebDriver driver) {
     super(driver);

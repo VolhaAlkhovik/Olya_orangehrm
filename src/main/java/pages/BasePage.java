@@ -57,7 +57,6 @@ public class BasePage {
     String currentValue = dropdown.getText().trim();
 
     if (currentValue.equalsIgnoreCase(expectedValue)) {
-      System.out.println("Dropdown already has value: " + expectedValue);
       return;
     }
 
