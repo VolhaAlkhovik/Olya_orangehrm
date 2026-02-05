@@ -22,7 +22,6 @@ public class LoginPage extends BasePage {
   }
 
   public Dashboard successLogin(String name, String pass) {
-    // wait.waitForVisibility(username);
     enterUsername(name).enterPassword(pass).submit();
     return new Dashboard(driver);
   }
