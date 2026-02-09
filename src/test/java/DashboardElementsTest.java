@@ -1,3 +1,4 @@
+import base.BaseTest;
 import config.Config;
 import org.testng.Assert;
 import org.testng.annotations.Test;

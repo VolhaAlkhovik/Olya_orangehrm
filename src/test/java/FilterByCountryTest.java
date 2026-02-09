@@ -1,3 +1,4 @@
+import base.BaseTest;
 import config.Config;
 import java.util.List;
 import org.testng.Assert;
