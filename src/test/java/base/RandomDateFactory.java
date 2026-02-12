@@ -1,4 +1,4 @@
-package utils;
+package base;
 
 import com.github.javafaker.Faker;
 import core.DateUtils;

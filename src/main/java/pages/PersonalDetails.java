@@ -36,8 +36,7 @@ public class PersonalDetails extends BasePage {
   private By genderFemaleRadio = By.xpath("//input[@type='radio' and @value='2']");
   private By saveButton = By.xpath("//button[@type = 'submit'][1]");
   private By jobDetails = By.xpath("//a[contains(@href,'viewJobDetails')]");
-  private By successToaster =
-      By.xpath("//div[@class='oxd-toast oxd-toast--success oxd-toast-container--toast']");
+  private By successToaster = By.cssSelector("div.oxd-toast--success");
 
   public PersonalDetails(WebDriver driver) {
     super(driver);

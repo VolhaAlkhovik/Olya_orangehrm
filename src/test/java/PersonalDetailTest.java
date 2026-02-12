@@ -1,10 +1,10 @@
 import base.BaseTest;
+import base.RandomDateFactory;
 import config.Config;
 import entities.Person;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
-import utils.RandomDateFactory;
 
 public class PersonalDetailTest extends BaseTest {
 
