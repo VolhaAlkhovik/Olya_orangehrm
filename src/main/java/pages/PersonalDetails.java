@@ -36,15 +36,14 @@ public class PersonalDetails extends BasePage {
   private By genderFemaleRadio = By.xpath("//input[@type='radio' and @value='2']");
   private By saveButton = By.xpath("//button[@type = 'submit'][1]");
   private By jobDetails = By.xpath("//a[contains(@href,'viewJobDetails')]");
-  private By successToaster = By.cssSelector("div.oxd-toast--success");
-  private By loader = By.cssSelector("div.oxd-form-loader");
+  private By successToaster =
+      By.xpath("//div[@class='oxd-toast oxd-toast--success oxd-toast-container--toast']");
 
   public PersonalDetails(WebDriver driver) {
     super(driver);
   }
 
   public PersonalDetails fillForm(Person person) {
-    // wait.waitForLoaderToDisappear(loader);
     type(firstName, person.getFirstName());
     type(middleName, person.getMiddleName());
     type(lastName, person.getLastName());
