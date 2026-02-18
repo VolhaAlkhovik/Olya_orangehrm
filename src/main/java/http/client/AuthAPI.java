@@ -1,12 +1,16 @@
-package base.http_client;
+package http.client;
 
-import static io.restassured.RestAssured.*;
+import static io.restassured.RestAssured.given;
 
 import config.Config;
 import io.restassured.response.Response;
 import java.util.Map;
 
 public class AuthAPI {
+
+  private AuthAPI() {
+
+  }
 
   public static Map<String, String> getSessionCookies() {
 

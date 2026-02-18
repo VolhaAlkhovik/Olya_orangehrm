@@ -1,4 +1,4 @@
-package base.http_client;
+package http.client;
 
 import config.Config;
 import java.util.Map;
@@ -7,7 +7,11 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginAPI {
 
-  protected static final String dashboard_url = Config.get("dashboard.url");
+  protected static final String DASHBOARD_URL = Config.get("dashboard.url");
+
+  private LoginAPI() {
+
+  }
 
   public static void loginWithCookies(WebDriver driver) {
 
@@ -18,6 +22,6 @@ public class LoginAPI {
 
       driver.manage().addCookie(cookie);
     }
-    driver.get(dashboard_url);
+    driver.get(DASHBOARD_URL);
   }
 }

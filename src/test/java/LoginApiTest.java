@@ -1,7 +1,6 @@
-package base.http_client;
-
 import base.BaseTest;
 import config.Config;
+import http.client.LoginAPI;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -18,6 +17,5 @@ public class LoginApiTest extends BaseTest {
     Assert.assertTrue(
         currentUrl.startsWith("https://opensource-demo.orangehrmlive.com/web/index.php/pim/"),
         "PIM модуль не открылся");
-
   }
 }
