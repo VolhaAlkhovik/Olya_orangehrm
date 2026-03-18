@@ -1,3 +1,4 @@
+import base.BaseTest;
 import config.Config;
 import net.bytebuddy.utility.RandomString;
 import org.testng.annotations.DataProvider;

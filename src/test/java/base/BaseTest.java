@@ -1,3 +1,5 @@
+package base;
+
 import com.github.javafaker.Faker;
 import config.Config;
 import org.openqa.selenium.WebDriver;

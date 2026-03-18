@@ -1,3 +1,4 @@
+import base.BaseTest;
 import config.Config;
 import entities.Employee;
 import org.testng.Assert;
