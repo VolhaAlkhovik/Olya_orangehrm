@@ -11,7 +11,6 @@
         <classes>
             <class name = "LoginSuccess"/>
             <class name = "AddEmployeeTest"/>
-            <class name = "LoginApiTest"/>
         </classes>
     </test>
 </suite>

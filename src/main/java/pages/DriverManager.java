@@ -1,54 +1,61 @@
-/*package pages;
+package pages;
+
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.io.InputStream;
+;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import java.util.Properties;
 
-import static java.lang.System.getProperty;
 
 public class DriverManager {
 
   private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+  private static ThreadLocal<String> currentTestName = new ThreadLocal<>();
   private static Properties properties = new Properties();
 
-  private DriverManager() {
-
-  }
-
   static {
-    try {
-      properties.load(
-              ClassLoader.getSystemResourceAsStream("config.properties")
-      );
+    try (var inputStream = ClassLoader.getSystemResourceAsStream("config.properties")) {
+      if (inputStream == null) {
+        throw new RuntimeException("config.properties not found in classpath");
+      }
+      properties.load(inputStream);
     } catch (Exception e) {
       throw new RuntimeException("Failed to load config.properties", e);
     }
   }
 
+  private DriverManager() {
+
+  }
+
+  public static void setTestName(String testName) {
+    currentTestName.set(testName);
+    System.setProperty("testName", testName);
+  }
+
   public static String getProperty(String key) {
-    String value = System.getProperty(key); // из Maven
-
+    String value = System.getProperty(key);
     if (value == null) {
-      value = properties.getProperty(key); // из файла
+      value = properties.getProperty(key);
     }
-
     return value;
   }
 
   public static WebDriver getDriver() {
     if (driver.get() == null) {
-      String browser = getProperty("browser").toLowerCase();
-      if (Boolean.parseBoolean(getProperty("selenoidEnable"))) {
+      String browser = getProperty("browser");
+
+      if(Boolean.parseBoolean(getProperty("selenoidEnable"))){
         initRemoteDriver(browser);
       } else {
         initLocalDriver(browser);
@@ -57,13 +64,16 @@ public class DriverManager {
     return driver.get();
   }
 
-  private static void initRemoteDriver(String browser){
-    try {
-      DesiredCapabilities capabilities = new DesiredCapabilities();
-      switch (browser) {
+  private static void initRemoteDriver(String browser) {
+    String testName = currentTestName.get();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS");
+    String timestamp = sdf.format(new Date());
+    String videoFileName = browser + "_" + testName + "_" + timestamp + ".mp4";
+    System.out.println("🎥 Video file: " + videoFileName);
+    try{
+      switch (browser.toLowerCase()) {
         case "chrome" -> {
           ChromeOptions chromeOptions = new ChromeOptions();
-          // required for Docker/Selenoid stability. (info by ChatGPT)
           chromeOptions.addArguments("--no-sandbox");
           chromeOptions.addArguments("--disable-dev-shm-usage");
           if (Boolean.parseBoolean(getProperty("headless"))) {
@@ -71,9 +81,13 @@ public class DriverManager {
           }
           chromeOptions.setCapability("selenoid:options", Map.of(
                   "enableVNC", true,
-                  "enableVideo", true
+                  "enableVideo", true,
+                  "videoName" , videoFileName,
+                  "sessionTimeout", "2m"
           ));
-          capabilities.merge(chromeOptions);
+
+          driver.set(new RemoteWebDriver(
+                  new URL(getProperty("selenoidUrl")), chromeOptions));
         }
         case "firefox" -> {
           FirefoxOptions firefoxOptions = new FirefoxOptions();
@@ -82,84 +96,37 @@ public class DriverManager {
           }
           firefoxOptions.setCapability("selenoid:options", Map.of(
                   "enableVNC", true,
-                  "enableVideo", true
+                  "enableVideo", true,
+                  "videoName" , videoFileName,
+                  "sessionTimeout", "2m"
           ));
-          capabilities.merge(firefoxOptions);
+
+          driver.set(new RemoteWebDriver(
+                  new URL(getProperty("selenoidUrl")), firefoxOptions));
         }
         default -> throw new IllegalArgumentException("Unsupported remote browser: " + browser);
       }
-      driver.set(new RemoteWebDriver(
-              new URL(getProperty("selenoidUrl")), capabilities));
-
     } catch (MalformedURLException e) {
       throw new RuntimeException("Invalid Selenoid URL", e);
     }
   }
+  private static void initLocalDriver(String browser) {
+    switch (browser.toLowerCase()) {
+      case "chrome" -> {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
 
-private static void initLocalDriver(String browser) {
-  switch (browser) {
-    case "chrome" -> {
-      ChromeOptions options = new ChromeOptions();
-      options.addArguments("--start-maximized");
-/*                if (Boolean.parseBoolean(getProperty("headless"))) {
-                   options.addArguments("--headless=new");
-               }
-      driver.set(new ChromeDriver(options));
-    }
-    case "firefox" -> {
-      FirefoxOptions options = new FirefoxOptions();
-      options.addArguments("--width=1920");
-      options.addArguments("--height=1080");
-/*                if (Boolean.parseBoolean(getProperty("headless"))) {
-                   options.addArguments("--headless");
-               }
-      driver.set(new FirefoxDriver(options));
-    }
-    default -> throw new IllegalArgumentException("Передан неподдерживаемый браузер");
-  }
-}
-
-public static void quitDriver() {
-    if (driver.get() != null) {
-      driver.get().quit();
-      driver.remove();
-    }
-  }
-}
- */
-
-package pages;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
-import static java.lang.System.getProperty;
-
-public class DriverManager {
-
-  private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-
-  private DriverManager() {
-
-  }
-
-  public static WebDriver getDriver() {
-    if (driver.get() == null) {
-      String browser = getProperty("browser");
-
-      switch(browser.toLowerCase()) {
-        case "chrome" -> driver.set(new ChromeDriver());
-        case "firefox" -> driver.set(new FirefoxDriver());
-        default -> throw new IllegalArgumentException("Передан неподдерживаемый браузер");
+        driver.set(new ChromeDriver(options));
       }
-    }
+      case "firefox" -> {
+        FirefoxOptions options = new FirefoxOptions();
+        options.addArguments("--width=1920");
+        options.addArguments("--height=1080");
 
-    return driver.get();
+        driver.set(new FirefoxDriver(options));
+      }
+      default -> throw new IllegalArgumentException("Передан неподдерживаемый браузер");
+    }
   }
 
   public static void quitDriver() {

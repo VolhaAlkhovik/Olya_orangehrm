@@ -7,6 +7,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.DriverManager;
 
+import java.lang.reflect.Method;
+
 public class BaseTest {
 
   protected WebDriver driver;
@@ -14,7 +16,8 @@ public class BaseTest {
   protected Faker faker = new Faker();
 
   @BeforeMethod
-  public void setUp() {
+  public void setUp(Method method) {
+    DriverManager.setTestName(method.getName());
     driver = DriverManager.getDriver();
     driver.manage().window().maximize();
     driver.get(login_url);
