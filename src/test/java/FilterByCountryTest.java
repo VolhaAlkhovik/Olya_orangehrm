@@ -1,14 +1,17 @@
 import base.BaseTest;
 import config.Config;
 import java.util.List;
+
+import io.qameta.allure.Epic;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.SidePanel;
 
+@Epic("Admin module")
 public class FilterByCountryTest extends BaseTest {
 
-  @Test
+  @Test(description = "Searching filtered country")
   public void filterByCountry() {
 
     LoginPage loginPage = new LoginPage(driver);

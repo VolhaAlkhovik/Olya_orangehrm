@@ -1,13 +1,19 @@
 import base.BaseTest;
 import config.Config;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import net.bytebuddy.utility.RandomString;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.LoginPage;
 
+@Epic("Authentication")
 public class UnsuccessLogin extends BaseTest {
 
+  @Feature("Login")
+  @Story("User is unable to login to the app")
   @Test(dataProvider = "getCredentials", description = "Failed login with invalid credentials")
   void invalidCredentialsTest(String username, String password) {
 

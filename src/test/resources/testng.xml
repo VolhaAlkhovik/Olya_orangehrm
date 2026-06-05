@@ -4,13 +4,15 @@
     <listeners>
         <listener class-name="listeners.SuiteXMLTransformer"/>
         <listener class-name="listeners.ScreenshotListener"/>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
     </listeners>
     <parameter name="username"  value="Admin"/>
     <parameter name="password"  value="admin123"/>
     <test name="Login">
         <classes>
             <class name = "LoginSuccess"/>
-            <class name = "AddEmployeeTest"/>
+            <class name = "UnsuccessLogin"/>
+            <class name = 'AddLocationTest'/>
         </classes>
     </test>
 </suite>

@@ -1,15 +1,22 @@
 import base.BaseTest;
 import config.Config;
 import entities.Location;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Flaky;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.SaveLocation;
 import pages.SidePanel;
 
+@Epic("Admin module")
 public class AddLocationTest extends BaseTest {
 
-  @Test
+  @Story("Organization")
+  @Test(description = "Adding location")
+  @Flaky
   public void addLocation() {
 
     Location location =

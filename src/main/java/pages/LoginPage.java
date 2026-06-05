@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -26,6 +27,7 @@ public class LoginPage extends BasePage {
     return new Dashboard(driver);
   }
 
+  @Step("")
   public LoginPage failedLogin(String name, String pass) {
     enterUsername(name).enterPassword(pass).submit();
     wait.waitForVisibility(errorMarker);
@@ -36,16 +38,18 @@ public class LoginPage extends BasePage {
     return getText(errorMarker);
   }
 
+ @Step("Enter username")
   public LoginPage enterUsername(String name) {
     type(username, name);
     return this;
   }
 
+  @Step("Enter password")
   public LoginPage enterPassword(String pass) {
     type(password, pass);
     return this;
   }
-
+  @Step("Click submit button")
   public void submit() {
     click(submitButton);
   }

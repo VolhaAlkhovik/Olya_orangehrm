@@ -1,11 +1,13 @@
 import base.BaseTest;
 import config.Config;
 import entities.Person;
+import io.qameta.allure.Epic;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
 import utils.RandomDateFactory;
 
+@Epic("PIM module")
 public class PersonalDetailTest extends BaseTest {
 
   Person person =
@@ -22,7 +24,7 @@ public class PersonalDetailTest extends BaseTest {
           .gender("Male")
           .build();
 
-  @Test
+  @Test(description = "Searching Sales Person and fill personal details")
   public void searchSalesPersonAndFillForm() {
     LoginPage loginPage = new LoginPage(driver);
     loginPage.successLogin(Config.get("app.username"), Config.get("app.password"));

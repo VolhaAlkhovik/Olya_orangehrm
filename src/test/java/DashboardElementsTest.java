@@ -1,14 +1,16 @@
 import base.BaseTest;
 import config.Config;
+import io.qameta.allure.Epic;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.Dashboard;
 import pages.LoginPage;
 
+@Epic("Dashboard")
 public class DashboardElementsTest extends BaseTest {
 
-  @Test
+  @Test(description = "Checking dashboard's elements")
   public void checkDashboardElements() {
 
     LoginPage loginPage = new LoginPage(driver);

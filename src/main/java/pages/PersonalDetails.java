@@ -1,6 +1,7 @@
 package pages;
 
 import entities.Person;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -42,6 +43,7 @@ public class PersonalDetails extends BasePage {
     super(driver);
   }
 
+  @Step("Enter info about person")
   public PersonalDetails fillForm(Person person) {
     type(firstName, person.getFirstName());
     type(middleName, person.getMiddleName());
@@ -57,6 +59,7 @@ public class PersonalDetails extends BasePage {
     return this;
   }
 
+  @Step("Open Job Details")
   public JobDetails openjobDetails() {
     wait.waitForVisibility(jobDetails);
     click(jobDetails);

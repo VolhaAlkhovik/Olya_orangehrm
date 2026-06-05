@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+
+    tools {
+        allure 'allure'
+        }
+
+    parameters{
+        string(name: 'browser', defaultValue: 'chrome', description: 'Browser to use for tests')
+        string(name: 'threadCount', defaultValue: '2', description: 'Number of parallel threads')
+        string(name: 'config', defaultValue: 'all_tests', description: 'TestNG suite file(without .xml extension)')
+        booleanParam(name: 'selenoidEnable', defaultValue: true, description: 'Enable running on Selenoid')
+        }
+
+        stages {
+            stage('Checkout') {
+                steps {
+                    git branch: 'master', url: 'https://github.com/VolhaAlkhovik/Olya_orangehrm.git', credentialsId: 'github-token'
+                    }
+                }
+
+            stage('Test') {
+                steps {
+                    bat """
+                        mvn clean test ^
+                        -Dbrowser=${params.browser} ^
+                        -DthreadCount=${params.threadCount} ^
+                        -Dconfig=${params.config} ^
+                        -DselenoidEnable=${params.selenoidEnable} \
+                    """
+                }
+                post {
+                    always {
+                        allure (includeProperties: false,
+                                jdk: '',
+                                results: [[path: 'target/allure-results']]
+                                )
+
+                                archiveArtifacts artifacts: 'target/screenchots/*.png'
+                            }
+                        }
+                    }
+                }
+            }

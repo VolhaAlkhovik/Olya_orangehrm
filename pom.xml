@@ -24,6 +24,9 @@
         <slf4j-simple.version>2.0.17</slf4j-simple.version>
         <browser.name>firefox</browser.name>
         <thread.count>3</thread.count>
+        <allure.version.testng>2.29.1</allure.version.testng>
+        <aspectj.version>1.9.25.1</aspectj.version>
+
         <parallel>classes</parallel>
 
         <suite>testng</suite>
@@ -64,6 +67,24 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j-simple.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version.testng}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-java-commons</artifactId>
+            <version>2.29.1</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
     <build>
@@ -117,11 +138,27 @@
                     <suiteXmlFiles>
                     <suiteXmlFile>src/test/resources/${suite}.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                    <!-- Необязательно: можно явно указать директорию для результатов Allure -->
                     <systemPropertyVariables>
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
                         <browser>${browser.name}</browser>
                         <threadCount>${thread.count}</threadCount>
                         <parallel>${parallel}</parallel>
                     </systemPropertyVariables>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.12.0</version> <!-- Убедитесь, что версия актуальна -->
+                <configuration>
+                    <!-- Версия шаблона отчета -->
+                    <reportVersion>${allure.version}</reportVersion>
+                    <!-- Директория, где лежат "сырые" результаты тестов -->
+                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
                 </configuration>
             </plugin>
         </plugins>

@@ -1,6 +1,7 @@
 import base.BaseTest;
 import config.Config;
 import entities.Job;
+import io.qameta.allure.Epic;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.JobTitleView;
@@ -8,9 +9,10 @@ import pages.LoginPage;
 import pages.SaveJobTitle;
 import pages.SidePanel;
 
+@Epic("Admin module")
 public class RemoveJobTitleTest extends BaseTest {
 
-  @Test
+  @Test(description = "Removing job title")
   public void removeJobTitle() {
     LoginPage loginPage = new LoginPage(driver);
     loginPage.successLogin(Config.get("app.username"), Config.get("app.password"));

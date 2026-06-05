@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -32,35 +33,43 @@ public class Dashboard extends BasePage {
     super(driver);
   }
 
+  @Step("Open PIM module")
   public PIM openPIM() {
     click(pim);
     return new PIM(driver);
   }
 
+  @Step("\"Time at Work\" block is visible on the Dashboard")
   public boolean isTimeAtWorkIsVisible() {
     return isDisplayed(timeAtWork);
   }
 
+  @Step("\"My actions\" block is visible on the Dashboard")
   public boolean isMyActionsIsVisible() {
     return isDisplayed(myActions);
   }
 
+  @Step("\"Quich Launch\" block is visible on the Dashboard")
   public boolean isQuickLaunchIsVisible() {
     return isDisplayed(quickLaunch);
   }
 
+  @Step("\"Buss Latest Posts\" block is visible on the Dashboard")
   public boolean isBuzzLatestPhotoIsVisible() {
     return isDisplayed(buzzLatestPhoto);
   }
 
+  @Step("\"Employees On Leave Today\" block is visible on the Dashboard")
   public boolean isEmployeesOnLeaveTodayIsVisible() {
     return isDisplayed(employeesOnLeaveToday);
   }
 
+  @Step("\"Employees Distribution By Location\" block is visible on the Dashboard")
   public boolean isEmployeesDistributionByLocationIsVisible() {
     return isDisplayed(employeesDistributionByLocation);
   }
 
+  @Step("\"Employees Distribution By SubUnit\" block is visible on the Dashboard")
   public boolean isEmployeesDistributionBySubUnitIsVisible() {
     return isDisplayed(employeesDistributionBySubUnit);
   }

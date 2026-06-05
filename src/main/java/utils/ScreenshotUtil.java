@@ -1,5 +1,6 @@
 package utils;
 
+import io.qameta.allure.Attachment;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import net.bytebuddy.build.BuildLogger;
@@ -17,7 +18,11 @@ import java.util.Date;
 @UtilityClass
 public class ScreenshotUtil {
 
-    public void takeScreenshot(WebDriver driver) {
+    @Attachment(value = "Screenshot", type = "image/png")
+    public static byte[] takeScreenshot(WebDriver driver) {
+
+        byte[] screenshotBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         String timestamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format((new Date()));
         String dirPath = "target/screenshots/";
@@ -34,5 +39,7 @@ public class ScreenshotUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return screenshotBytes;
     }
 }

@@ -1,13 +1,15 @@
 import base.BaseTest;
 import config.Config;
+import io.qameta.allure.Epic;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HeaderPanel;
 import pages.LoginPage;
 
+@Epic("Log out")
 public class LogOut extends BaseTest {
 
-  @Test
+  @Test(description = "Log out")
   public void logOut() {
     LoginPage loginPage = new LoginPage(driver);
     loginPage.successLogin(Config.get("app.username"), Config.get("app.password"));

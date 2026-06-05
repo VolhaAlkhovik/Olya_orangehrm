@@ -1,6 +1,7 @@
 package pages;
 
 import entities.Employee;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -16,6 +17,7 @@ public class AddingEmployee extends BasePage {
     super(driver);
   }
 
+  @Step("Add employee to PIM module")
   public void addEmployee(Employee employee) {
     wait.waitForLoaderToDisappear();
     type(firstName, employee.getFirstName());
