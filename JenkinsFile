@@ -6,6 +6,7 @@ pipeline {
         }
 
     parameters{
+        string(name: 'branchName', defaultValue: 'main', description: 'Branch for build')
         string(name: 'browser', defaultValue: 'chrome', description: 'Browser to use for tests')
         string(name: 'threadCount', defaultValue: '2', description: 'Number of parallel threads')
         string(name: 'config', defaultValue: 'all_tests', description: 'TestNG suite file(without .xml extension)')
@@ -15,7 +16,7 @@ pipeline {
         stages {
             stage('Checkout') {
                 steps {
-                    git branch: 'master', url: 'https://github.com/VolhaAlkhovik/Olya_orangehrm.git', credentialsId: 'github-token'
+                    git branch: "${params.branchName}", url: 'https://github.com/VolhaAlkhovik/Olya_orangehrm.git', credentialsId: 'github-token'
                     }
                 }
 
