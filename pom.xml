@@ -22,7 +22,7 @@
         <surefire.version>3.5.3</surefire.version>
         <rest-assured.version>5.4.0</rest-assured.version>
         <slf4j-simple.version>2.0.17</slf4j-simple.version>
-        <browser.name>firefox</browser.name>
+        <browser.name>chrome</browser.name>
         <thread.count>3</thread.count>
         <allure.version.testng>2.29.1</allure.version.testng>
         <aspectj.version>1.9.25.1</aspectj.version>
@@ -156,7 +156,7 @@
                 <version>2.12.0</version> <!-- Убедитесь, что версия актуальна -->
                 <configuration>
                     <!-- Версия шаблона отчета -->
-                    <reportVersion>${allure.version}</reportVersion>
+                    <reportVersion>${allure.version.testng}</reportVersion>
                     <!-- Директория, где лежат "сырые" результаты тестов -->
                     <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
                 </configuration>
