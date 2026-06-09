@@ -23,11 +23,11 @@ pipeline {
             stage('Test') {
                 steps {
                     bat """
-                        mvn clean test ^
+                        mvn clean test
                         -Dbrowser=${params.browser} ^
                         -DthreadCount=${params.threadCount} ^
                         -Dconfig=${params.config} ^
-                        -DselenoidEnable=${params.selenoidEnable} \
+                        -DselenoidEnable=${params.selenoidEnable}
                     """
                 }
                 post {
@@ -37,7 +37,6 @@ pipeline {
                                 results: [[path: 'target/allure-results']]
                                 )
 
-                                archiveArtifacts artifacts: 'target/screenchots/*.png'
                             }
                         }
                     }
