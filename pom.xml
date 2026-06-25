@@ -22,10 +22,6 @@
         <surefire.version>3.5.3</surefire.version>
         <rest-assured.version>5.4.0</rest-assured.version>
         <slf4j-simple.version>2.0.17</slf4j-simple.version>
-        <browser.name>firefox</browser.name>
-        <thread.count>3</thread.count>
-        <parallel>classes</parallel>
-
         <suite>testng</suite>
     </properties>
     <dependencies>
@@ -117,11 +113,6 @@
                     <suiteXmlFiles>
                     <suiteXmlFile>src/test/resources/${suite}.xml</suiteXmlFile>
                     </suiteXmlFiles>
-                    <systemPropertyVariables>
-                        <browser>${browser.name}</browser>
-                        <threadCount>${thread.count}</threadCount>
-                        <parallel>${parallel}</parallel>
-                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>

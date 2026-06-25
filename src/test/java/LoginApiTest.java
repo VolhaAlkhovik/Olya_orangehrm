@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class LoginApiTest extends BaseTest {
 
-  protected static final String pim_module = Config.get("pim.url");
+  protected static final String pim_module = Config.getProperty("pim.url");
 
   @Test
   public void getPimModuleTest() {

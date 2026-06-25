@@ -21,7 +21,7 @@ public class AddLocationTest extends BaseTest {
             .build();
 
     LoginPage loginPage = new LoginPage(driver);
-    loginPage.successLogin(Config.get("app.username"), Config.get("app.password"));
+    loginPage.successLogin(Config.getProperty("app.username"), Config.getProperty("app.password"));
     SidePanel sidePanel = new SidePanel(driver);
     sidePanel.adminButton().clickLocations().addingLocation();
 

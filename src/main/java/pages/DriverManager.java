@@ -8,34 +8,21 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
-import java.util.Properties;
+
+import static config.Config.getProperty;
 
 
 public class DriverManager {
 
   private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
   private static ThreadLocal<String> currentTestName = new ThreadLocal<>();
-  private static Properties properties = new Properties();
-
-  static {
-    try (var inputStream = ClassLoader.getSystemResourceAsStream("config.properties")) {
-      if (inputStream == null) {
-        throw new RuntimeException("config.properties not found in classpath");
-      }
-      properties.load(inputStream);
-    } catch (Exception e) {
-      throw new RuntimeException("Failed to load config.properties", e);
-    }
-  }
 
   private DriverManager() {
-
   }
 
   public static void setTestName(String testName) {
@@ -43,19 +30,11 @@ public class DriverManager {
     System.setProperty("testName", testName);
   }
 
-  public static String getProperty(String key) {
-    String value = System.getProperty(key);
-    if (value == null) {
-      value = properties.getProperty(key);
-    }
-    return value;
-  }
-
   public static WebDriver getDriver() {
     if (driver.get() == null) {
       String browser = getProperty("browser");
 
-      if(Boolean.parseBoolean(getProperty("selenoidEnable"))){
+      if (Boolean.parseBoolean(getProperty("selenoidEnable"))) {
         initRemoteDriver(browser);
       } else {
         initLocalDriver(browser);
@@ -70,7 +49,7 @@ public class DriverManager {
     String timestamp = sdf.format(new Date());
     String videoFileName = browser + "_" + testName + "_" + timestamp + ".mp4";
     System.out.println("🎥 Video file: " + videoFileName);
-    try{
+    try {
       switch (browser.toLowerCase()) {
         case "chrome" -> {
           ChromeOptions chromeOptions = new ChromeOptions();
@@ -82,7 +61,7 @@ public class DriverManager {
           chromeOptions.setCapability("selenoid:options", Map.of(
                   "enableVNC", true,
                   "enableVideo", true,
-                  "videoName" , videoFileName,
+                  "videoName", videoFileName,
                   "sessionTimeout", "2m"
           ));
 
@@ -97,7 +76,7 @@ public class DriverManager {
           firefoxOptions.setCapability("selenoid:options", Map.of(
                   "enableVNC", true,
                   "enableVideo", true,
-                  "videoName" , videoFileName,
+                  "videoName", videoFileName,
                   "sessionTimeout", "2m"
           ));
 

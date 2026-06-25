@@ -12,12 +12,12 @@ public class DashboardElementsTest extends BaseTest {
   public void checkDashboardElements() {
 
     LoginPage loginPage = new LoginPage(driver);
-    loginPage.successLogin(Config.get("app.username"), Config.get("app.password"));
+    loginPage.successLogin(Config.getProperty("app.username"), Config.getProperty("app.password"));
 
     Dashboard dashboard = new Dashboard(driver);
 
     Assert.assertEquals(
-        driver.getCurrentUrl(), Config.get("dashboard.url"), "Страница дашборда не открыта");
+        driver.getCurrentUrl(), Config.getProperty("dashboard.url"), "Страница дашборда не открыта");
 
     SoftAssert softAssert = new SoftAssert();
     softAssert.assertTrue(

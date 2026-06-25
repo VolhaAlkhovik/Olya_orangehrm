@@ -8,7 +8,6 @@ public class Config {
   private static final Properties PROPERTIES = new Properties();
 
   private Config() {
-
   }
 
   static {
@@ -23,7 +22,11 @@ public class Config {
     }
   }
 
-  public static String get(String key) {
-    return PROPERTIES.getProperty(key);
+  public static String getProperty(String key) {
+    String value = System.getProperty(key);
+    if (value == null) {
+      value = PROPERTIES.getProperty(key);
+    }
+    return value;
   }
 }
