@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginAPI {
 
-  protected static final String DASHBOARD_URL = Config.get("dashboard.url");
+  protected static final String DASHBOARD_URL = Config.getProperty("dashboard.url");
 
   private LoginAPI() {
 

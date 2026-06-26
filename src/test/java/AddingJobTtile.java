@@ -13,7 +13,7 @@ public class AddingJobTtile extends BaseTest {
   public void addingJobTitle() {
 
     LoginPage loginPage = new LoginPage(driver);
-    loginPage.successLogin(Config.get("app.username"), Config.get("app.password"));
+    loginPage.successLogin(Config.getProperty("app.username"), Config.getProperty("app.password"));
     SidePanel sidePanel = new SidePanel(driver);
 
     Job job =

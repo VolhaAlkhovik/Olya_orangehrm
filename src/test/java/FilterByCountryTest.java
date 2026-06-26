@@ -12,7 +12,7 @@ public class FilterByCountryTest extends BaseTest {
   public void filterByCountry() {
 
     LoginPage loginPage = new LoginPage(driver);
-    loginPage.successLogin(Config.get("app.username"), Config.get("app.password"));
+    loginPage.successLogin(Config.getProperty("app.username"), Config.getProperty("app.password"));
     List<String> countries =
         new SidePanel(driver)
             .adminButton()
