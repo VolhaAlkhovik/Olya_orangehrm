@@ -13,7 +13,7 @@ public class LoginApiTest extends BaseTest {
     LoginAPI.loginWithCookies(driver);
     driver.get(pim_module);
 
-    String currentUrl = driver.getCurrentUrl();
+   String currentUrl = driver.getCurrentUrl();
     Assert.assertTrue(
         currentUrl.startsWith("https://opensource-demo.orangehrmlive.com/web/index.php/pim/"),
         "PIM модуль не открылся");

@@ -28,6 +28,8 @@ public class AuthAPI {
             .formParam("_token", csrfToken)
             .post("/validate");
 
+    System.out.println(validateResponse.cookies());
+    System.out.println(csrfToken);
     return validateResponse.cookies();
   }
 }
