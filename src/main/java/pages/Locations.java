@@ -22,7 +22,7 @@ public class Locations extends BasePage {
     super(driver);
   }
 
-  @Step("Click \"Add\" button for adding location to the page" )
+  @Step("Click \"Add\" button for adding location to the page")
   public SaveLocation addingLocation() {
     click(addLocation);
     return new SaveLocation(driver);

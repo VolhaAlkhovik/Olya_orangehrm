@@ -8,7 +8,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -55,7 +54,7 @@ public class DriverManager {
     if (driver.get() == null) {
       String browser = getProperty("browser");
 
-      if(Boolean.parseBoolean(getProperty("selenoidEnable"))){
+      if (Boolean.parseBoolean(getProperty("selenoidEnable"))) {
         initRemoteDriver(browser);
       } else {
         initLocalDriver(browser);
@@ -70,7 +69,7 @@ public class DriverManager {
     String timestamp = sdf.format(new Date());
     String videoFileName = browser + "_" + testName + "_" + timestamp + ".mp4";
     System.out.println("🎥 Video file: " + videoFileName);
-    try{
+    try {
       switch (browser.toLowerCase()) {
         case "chrome" -> {
           ChromeOptions chromeOptions = new ChromeOptions();
@@ -82,7 +81,7 @@ public class DriverManager {
           chromeOptions.setCapability("selenoid:options", Map.of(
                   "enableVNC", true,
                   "enableVideo", true,
-                  "videoName" , videoFileName,
+                  "videoName", videoFileName,
                   "sessionTimeout", "2m"
           ));
 
@@ -97,7 +96,7 @@ public class DriverManager {
           firefoxOptions.setCapability("selenoid:options", Map.of(
                   "enableVNC", true,
                   "enableVideo", true,
-                  "videoName" , videoFileName,
+                  "videoName", videoFileName,
                   "sessionTimeout", "2m"
           ));
 
