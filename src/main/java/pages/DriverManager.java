@@ -134,10 +134,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
 import static java.lang.System.getProperty;
 
 public class DriverManager {
@@ -152,7 +148,7 @@ public class DriverManager {
     if (driver.get() == null) {
       String browser = getProperty("browser");
 
-      switch(browser.toLowerCase()) {
+      switch (browser.toLowerCase()) {
         case "chrome" -> driver.set(new ChromeDriver());
         case "firefox" -> driver.set(new FirefoxDriver());
         default -> throw new IllegalArgumentException("Передан неподдерживаемый браузер");

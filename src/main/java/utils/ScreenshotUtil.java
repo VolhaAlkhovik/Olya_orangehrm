@@ -2,7 +2,6 @@ package utils;
 
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
-import net.bytebuddy.build.BuildLogger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -23,12 +22,12 @@ public class ScreenshotUtil {
         String dirPath = "target/screenshots/";
 
         File dir = new File(dirPath);
-        if(!dir.exists()) {
+        if (!dir.exists()) {
             dir.mkdir();
         }
 
         File dest = new File(dirPath + timestamp + ".png");
-        try{
+        try {
             Files.copy(screenshot.toPath(), dest.toPath());
             log.error("Saved screenshot to: {}", dest.getAbsolutePath());
         } catch (IOException e) {
