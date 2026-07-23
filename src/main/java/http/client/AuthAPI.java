@@ -30,7 +30,7 @@ public class AuthAPI {
             .formParam("_token", csrfToken)
             .post("/validate");
 
-    log.info("Response cookies: {}" , validateResponse.cookies());
+    log.info("Response cookies: {}", validateResponse.cookies());
     log.info("CsrfToken", csrfToken);
     return validateResponse.cookies();
   }

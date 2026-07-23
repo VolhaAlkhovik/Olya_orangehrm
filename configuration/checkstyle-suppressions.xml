@@ -8,4 +8,5 @@
  <suppress checks="MagicNumber" files=".*src/(test|main)/java/.*"/>
  <suppress checks="JavadocVariable" files=".*/src/.*/java/.*"/>
  <suppress checks="HiddenField" files=".*/src/main/java/pages/.*"/>
+ <suppress checks="HideUtilityClassConstructor" files="ScreenshotUtil.java"/>
 </suppressions>
