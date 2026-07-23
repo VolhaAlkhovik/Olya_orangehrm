@@ -17,8 +17,6 @@ import java.util.Date;
 @UtilityClass
 public class ScreenshotUtil {
 
-    private ScreenshotUtil() {
-    }
 
     @Attachment(value = "Screenshot", type = "image/png")
     public static byte[] takeScreenshot(WebDriver driver) {

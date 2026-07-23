@@ -27,7 +27,7 @@ public class PersonalDetailTest extends BaseTest {
   @Test(description = "Searching Sales Person and fill personal details")
   public void searchSalesPersonAndFillForm() {
     LoginPage loginPage = new LoginPage(driver);
-    loginPage.successLogin(Config.get("app.username"), Config.get("app.password"));
+    loginPage.successLogin(Config.getProperty("app.username"), Config.getProperty("app.password"));
     SidePanel sidePanel = new SidePanel(driver);
 
     PersonalDetails personalDetails =

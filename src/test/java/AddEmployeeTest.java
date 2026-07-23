@@ -22,7 +22,7 @@ public class AddEmployeeTest extends BaseTest {
 
     LoginPage loginPage = new LoginPage(driver);
     Dashboard dashboard =
-        loginPage.successLogin(Config.get("app.username"), Config.get("app.password"));
+        loginPage.successLogin(Config.getProperty("app.username"), Config.getProperty("app.password"));
     PIM pim = dashboard.openPIM();
 
     AddingEmployee addingEmployee = pim.openAddEmployee();

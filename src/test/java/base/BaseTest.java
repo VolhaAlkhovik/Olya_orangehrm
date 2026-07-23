@@ -18,12 +18,12 @@ import java.lang.reflect.Method;
 public class BaseTest {
 
   protected WebDriver driver;
-  protected static final String login_url = Config.get("app.url");
+  protected static final String login_url = Config.getProperty("app.url");
   protected Faker faker = new Faker();
 
   @BeforeMethod
   public void setUp(Method method) {
-   // DriverManager.setTestName(method.getName());
+    DriverManager.setTestName(method.getName());
     driver = DriverManager.getDriver();
     driver.manage().window().maximize();
     driver.get(login_url);

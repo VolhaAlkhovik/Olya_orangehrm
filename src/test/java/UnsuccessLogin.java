@@ -22,7 +22,7 @@ public class UnsuccessLogin extends BaseTest {
 
     SoftAssert softAssert = new SoftAssert();
     softAssert.assertEquals(loginPage.getTextOfFailedLogin(), "Invalid credentials");
-    softAssert.assertEquals(driver.getCurrentUrl(), Config.get("app.url"));
+    softAssert.assertEquals(driver.getCurrentUrl(), Config.getProperty("app.url"));
     softAssert.assertAll();
     driver.navigate().refresh();
   }

@@ -22,13 +22,9 @@
         <surefire.version>3.5.3</surefire.version>
         <rest-assured.version>5.4.0</rest-assured.version>
         <slf4j-simple.version>2.0.17</slf4j-simple.version>
-        <browser.name>chrome</browser.name>
-        <thread.count>3</thread.count>
-        <allure.version.testng>2.29.1</allure.version.testng>
+        <allure.version.testng>2.30.0</allure.version.testng>
         <aspectj.version>1.9.25.1</aspectj.version>
-
-        <parallel>classes</parallel>
-
+        <browser.name>firefox</browser.name>
         <suite>testng</suite>
     </properties>
     <dependencies>
@@ -144,16 +140,13 @@
                     <!-- Необязательно: можно явно указать директорию для результатов Allure -->
                     <systemPropertyVariables>
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
-                        <browser>${browser.name}</browser>
-                        <threadCount>${thread.count}</threadCount>
-                        <parallel>${parallel}</parallel>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-                <version>2.12.0</version> <!-- Убедитесь, что версия актуальна -->
+                <version>2.17.0</version> <!-- Убедитесь, что версия актуальна -->
                 <configuration>
                     <!-- Версия шаблона отчета -->
                     <reportVersion>${allure.version.testng}</reportVersion>

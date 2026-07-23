@@ -13,7 +13,7 @@ public class Config {
 
   static {
     try (InputStream input =
-        Config.class.getClassLoader().getResourceAsStream("config.properties")) {
+                 Config.class.getClassLoader().getResourceAsStream("config.properties")) {
       if (input == null) {
         throw new RuntimeException("config.properties not found");
       }
@@ -23,7 +23,11 @@ public class Config {
     }
   }
 
-  public static String get(String key) {
-    return PROPERTIES.getProperty(key);
+  public static String getProperty(String key) {
+    String value = System.getProperty(key);
+    if (value == null) {
+      value = PROPERTIES.getProperty(key);
+    }
+    return value;
   }
 }
