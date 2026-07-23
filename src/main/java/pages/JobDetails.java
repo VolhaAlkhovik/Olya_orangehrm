@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -17,6 +18,7 @@ public class JobDetails extends BasePage {
     super(driver);
   }
 
+  @Step("Change job title for person and save it")
   public JobDetails changeJobTitle() {
     wait.waitForLoaderToDisappear();
     wait.waitForClickable(jobTitle);
@@ -25,6 +27,7 @@ public class JobDetails extends BasePage {
     return new JobDetails(driver);
   }
 
+  @Step("Click \"Personal details\" button")
   public PersonalDetails clickPersonalDetails() {
     click(personalDetailsButton);
     return new PersonalDetails(driver);

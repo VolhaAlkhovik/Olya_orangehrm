@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -12,12 +13,14 @@ public class HeaderPanel extends BasePage {
     super(driver);
   }
 
+  @Step("Open User menu")
   public HeaderPanel clickUserName() {
     wait.waitForVisibility(user);
     click(user);
     return this;
   }
 
+  @Step("Click \"Logout\" button")
   public LoginPage clickLogOut() {
     click(logOutButton);
     return new LoginPage(driver);

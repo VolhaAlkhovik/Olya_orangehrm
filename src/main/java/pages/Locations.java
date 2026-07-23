@@ -1,6 +1,8 @@
 package pages;
 
 import java.util.List;
+
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,11 +22,13 @@ public class Locations extends BasePage {
     super(driver);
   }
 
+  @Step("Click \"Add\" button for adding location to the page")
   public SaveLocation addingLocation() {
     click(addLocation);
     return new SaveLocation(driver);
   }
 
+  @Step("Enter country and click \"Search\" button")
   public Locations filterByCountry(String country) {
     selectCustomDropDown(countryDropDown, countryOption, country);
     click(searchButton);
@@ -42,6 +46,7 @@ public class Locations extends BasePage {
     throw new RuntimeException("Column not found" + columnName);
   }
 
+  @Step("Checking that filtered country is displayed")
   public List<String> getFilteredCountries() {
 
     wait.waitForLoaderToDisappear();

@@ -1,6 +1,7 @@
 package pages;
 
 import entities.Location;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -25,6 +26,7 @@ public class SaveLocation extends BasePage {
     super(driver);
   }
 
+  @Step("Fill location' fields and save it")
   public Locations fillLocationForm(Location location) {
     type(nameLocation, location.getName());
     type(city, location.getCity());

@@ -1,13 +1,16 @@
 import base.BaseTest;
 import config.Config;
 import entities.Employee;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Step;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
 
+@Epic("PIM module")
 public class AddEmployeeTest extends BaseTest {
 
-  @Test
+  @Test(description = "Adding new employee to PIM module")
   public void addEmployee() {
 
     Employee employee =
@@ -19,7 +22,7 @@ public class AddEmployeeTest extends BaseTest {
 
     LoginPage loginPage = new LoginPage(driver);
     Dashboard dashboard =
-        loginPage.successLogin(Config.get("app.username"), Config.get("app.password"));
+        loginPage.successLogin(Config.getProperty("app.username"), Config.getProperty("app.password"));
     PIM pim = dashboard.openPIM();
 
     AddingEmployee addingEmployee = pim.openAddEmployee();

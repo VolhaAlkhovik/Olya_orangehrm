@@ -1,23 +1,25 @@
 import base.BaseTest;
 import config.Config;
+import io.qameta.allure.Epic;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.Dashboard;
 import pages.LoginPage;
 
+@Epic("Dashboard")
 public class DashboardElementsTest extends BaseTest {
 
-  @Test
+  @Test(description = "Checking dashboard's elements")
   public void checkDashboardElements() {
 
     LoginPage loginPage = new LoginPage(driver);
-    loginPage.successLogin(Config.get("app.username"), Config.get("app.password"));
+    loginPage.successLogin(Config.getProperty("app.username"), Config.getProperty("app.password"));
 
     Dashboard dashboard = new Dashboard(driver);
 
     Assert.assertEquals(
-        driver.getCurrentUrl(), Config.get("dashboard.url"), "Страница дашборда не открыта");
+        driver.getCurrentUrl(), Config.getProperty("dashboard.url"), "Страница дашборда не открыта");
 
     SoftAssert softAssert = new SoftAssert();
     softAssert.assertTrue(

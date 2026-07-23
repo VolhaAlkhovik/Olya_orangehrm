@@ -1,6 +1,7 @@
 package pages;
 
 import entities.Job;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -19,6 +20,7 @@ public class SaveJobTitle extends BasePage {
     super(driver);
   }
 
+  @Step("Enter job title and Save it")
   public SaveJobTitle enterJobTitle(Job jobTitle) {
     wait.waitForLoaderToDisappear();
     type(jobTitleinput, jobTitle.getJobTitlefield());
